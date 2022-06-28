@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import './App.css';
 
@@ -22,7 +22,8 @@ function App() {
 
     setMessage('FFmpeg loaded');
     setMessage('Fetching your video file')
-    let file = await fetchFile(url)
+    console.log(`URL: ${url}`)
+    let file = await fetchFile(`https://cors-anywhere.kingbri.dev/${url}`)
 
     ffmpeg.FS('writeFile', 'test.mkv', file);
     setMessage('Remuxing started')
